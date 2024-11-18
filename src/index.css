@@ -61,16 +61,24 @@ main {
 
 .meme {
   position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  max-width: 500px; /* Optional: limits max width for large screens */
+  margin: 0 auto; /* Centers the meme container */
 }
 
 .meme--image {
   max-width: 100%;
+  height: auto; /* Ensures the image scales proportionally */
+  display: block; /* Removes any inline spacing issues */
   border-radius: 3px;
 }
 
 .meme--text {
   position: absolute;
-  width: 80%;
+  width: 90%; /* Slightly wider for better text fit */
   text-align: center;
   left: 50%;
   transform: translateX(-50%);
@@ -84,12 +92,27 @@ main {
   text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000,
     -2px 2px 0 #000, 0 2px 0 #000, 2px 0 0 #000, 0 -2px 0 #000, -2px 0 0 #000,
     2px 2px 5px #000;
+
+  /* Proper multiline text wrap */
+  overflow: hidden; /* Hide overflow */
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* Limit to 2 lines */
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis; /* Add "..." at the end if truncated */
+  word-wrap: break-word; /* Break long words */
+  line-height: 1.2; /* Adjust spacing between lines */
 }
 
 .bottom {
-  bottom: 0;
+  bottom: 5%; /* Adjust for better fit */
 }
 
 .top {
-  top: 0;
+  top: 5%; /* Adjust for better fit */
+}
+
+@media (max-width: 600px) {
+  .meme--text {
+    font-size: 1.5em;
+  }
 }
